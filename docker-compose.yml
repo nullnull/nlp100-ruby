@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  ruby:
+    build: .
+    command: ruby -e sleep
+    volumes:
+      - .:/app
+      - bundler-store:/usr/local/bundle
+  rubocop:
+    build: .
+    command: bundle exec guard
+    tty: true
+    volumes:
+      - .:/app
+      - bundler-store:/usr/local/bundle
+
+volumes:
+  bundler-store:
